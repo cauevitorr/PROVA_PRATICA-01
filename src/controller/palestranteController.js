@@ -1,10 +1,6 @@
 import conn from "../config/conn.js"
-import bcrypt from "bcrypt"
 import { v4 as uuidv4 } from "uuid"
-import jwt from "jsonwebtoken"
 
-//helper
-import createUserToken from "../helpers/create-user-token.js"
 
 export const register = async (request, response) => {
     const { nome, expertise } = request.body
@@ -50,24 +46,6 @@ export const register = async (request, response) => {
                 response.status(500).json({ er: "Erro ao cadastrar palestrante" })
                 return
             }
-            //criar token
-            //passar toekn para o front-end
-            const palestranteSQL = /*sql*/` SELECT * FROM palestrantes WHERE ?? = ?`
-            const palestranteData = ["id_palestrante", id]
-            conn.query(palestranteSQL, palestranteData, async (err, data) => {
-                if(err) {
-                    console.error(err)
-                    response.status(500).json({ message: "Erro ao procurar palestrante" })
-                    return
-                }
-                const palestrante = data[0] 
-                try {
-                    await createUserToken
-                } catch(error) {
-                    console.error(error)
-                    response.status(500).json({ message: "Palestrante cadastrado" })
-                }
-            })
             response.status(201).json({message: "Palestrante cadastrado"})
 
         })
