@@ -46,22 +46,22 @@ export const register = async (request, response) => {
                 response.status(500).json({ er: "Erro ao cadastrar palestrante" })
                 return
             }
-            response.status(201).json({message: "Palestrante cadastrado"})
+            response.status(201).json({ message: "Palestrante cadastrado" })
 
         })
 
     })
 }
 
-export const getPalestrantes = (request, response)=>{
+export const getPalestrantes = (request, response) => {
     const sql = /*sql*/ `SELECT * FROM palestrantes`;
     conn.query(sql, (err, data) => {
-     if (err) {
-      console.error(err);
-      response.status(500).json({ err: "Erro so buscar palestrantes" });
-      return;
-     }
-     const palestrantes = data;
-     response.status(200).json(palestrantes);
+        if (err) {
+            console.error(err);
+            response.status(500).json({ err: "Erro so buscar palestrantes" });
+            return;
+        }
+        const palestrantes = data;
+        response.status(200).json(palestrantes);
     });
-   };
+};

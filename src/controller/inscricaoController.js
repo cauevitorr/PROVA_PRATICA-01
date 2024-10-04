@@ -1,7 +1,7 @@
 import conn from "../config/conn.js"
 import { v4 as uuidv4 } from "uuid"
 
-export const inscricoes = async (request, response) => {
+export const inscricoes =  (request, response) => {
     const { participanteID, eventoID } = request.body
 
     if (!participanteID) {
@@ -13,8 +13,8 @@ export const inscricoes = async (request, response) => {
         return
     }
 
-    const checkSql = /*sql*/`SELECT * FROM inscricoes WHERE ?? = ?`
-    const checkSqlData = ["participanteID", participanteID, "evento", eventoID]
+    const checkSql = /*sql*/`SELECT * FROM inscricoes WHERE ?? = ? AND ?? = ?`
+    const checkSqlData = ["participanteID", participanteID, "eventoID", eventoID]
     conn.query(checkSql, checkSqlData, async (err, data) => {
         if (err) {
             console.error(err)

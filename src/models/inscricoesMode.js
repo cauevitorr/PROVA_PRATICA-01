@@ -3,12 +3,10 @@ import conn from "../config/conn.js";
 const tabelaInscricoes = /*sql*/`
 CREATE TABLE IF NOT EXISTS inscricoes(
     id_inscricao VARCHAR(60) PRIMARY KEY,
-    participanteID VARCHAR(60) NOT NULL,
-    eventoID VARCHAR(60) NOT NULL,
+    participanteID VARCHAR(60),
+    eventoID VARCHAR(60),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY(participanteID) REFERENCES participantes(id_participante),
-    FOREIGN KEY(eventoID) REFERENCES agenda(id_evento)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
 `
 conn.query(tabelaInscricoes, (err, results, fields)=>{

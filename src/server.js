@@ -10,12 +10,14 @@ import "./models/palestrantesModel.js"
 import "./models/eventosModel.js"
 import "./models/participanteModel.js"
 import "./models/inscricoesMode.js"
+import "./models/feedbackModel.js"
 
 //importação das rotas 
 import palestranteRouter from "./routers/palestranteRouter.js"
 import eventoRouter from "./routers/eventoRouter.js"
 import participanteRouter from "./routers/participanteRouter.js"
 import incricoesRouter from "./routers/inscricoesRouter.js"
+import feedbackRouter from "./routers/feedbackRouter.js"
 
 
 const PORT = 3333
@@ -31,6 +33,7 @@ app.use("/eventos", palestranteRouter)
 app.use("/eventos", eventoRouter)
 app.use("/eventos", participanteRouter)
 app.use("/eventos", incricoesRouter)
+app.use("/eventos", feedbackRouter)
 
 app.use("*", (request, response) => {
     response.status(404).json({ massage: "Rotas não encontrada" })

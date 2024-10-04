@@ -1,9 +1,9 @@
 import { Router } from "express";
-import {register, inscricoes} from "../controller/participanteController.js"
+import {getMeusEventos, register} from "../controller/participanteController.js"
 
 const router = Router()
 
 router.post("/participantes/registrar", register )
-router.get("/inscrever", inscricoes)
+router.get("/meus-eventos/:id", getMeusEventos)
 
 export default router

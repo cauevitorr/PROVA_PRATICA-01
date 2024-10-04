@@ -1,7 +1,6 @@
 import conn from "../config/conn.js"
 import { v4 as uuidv4 } from "uuid"
 
-
 export const register = async (request, response) => {
     const { nome, email } = request.body
 
@@ -53,3 +52,17 @@ export const register = async (request, response) => {
 
     })
 }
+
+export const getMeusEventos = (request, response) => {
+    const {id} = request.params
+    const sql = /*sql*/ `SELECT * FROM inscricoes WHERE participanteID = "${id}"`;
+    conn.query(sql, (err, data) => {
+        if (err) {
+            console.error(err);
+            response.status(500).json({ err: "Erro so buscar participante" });
+            return;
+        }
+        const participante = data;
+        response.status(200).json(participante);
+    });
+};
